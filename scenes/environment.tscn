@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuhesuavlsrjr"]
+
+[ext_resource type="PackedScene" uid="uid://c71yiiauhtc07" path="res://prefabs/player.tscn" id="1_fm4en"]
+[ext_resource type="Texture2D" uid="uid://dy61b0fbwf712" path="res://icon.svg" id="2_d5dl1"]
+
+[node name="Environment" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_fm4en")]
+position = Vector2(563.001, 300.37)
+
+[node name="Camera" type="Camera2D" parent="Player"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(186, 317)
+texture = ExtResource("2_d5dl1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(859, 301)
+texture = ExtResource("2_d5dl1")
