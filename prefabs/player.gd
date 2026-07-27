@@ -1,42 +1,25 @@
 extends CharacterBody2D
 
-var _throttle: float = 0.0
-var _velocity: float = 0.0
-var _steer: float = 0.0
 
-@export var max_speed: float = 390.0
-@export var friction: float = 200.0
-@export var acceleration: float = 190.0
-@export var steer_strength: float = 3.5
-@export var min_steer_factor: float = 0.5
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
 
-func _ready() -> void:
-	pass
-
-
-func _process(_delta: float) -> void:
-	_throttle = Input.get_action_strength("throttle")
-	_steer = Input.get_axis("steer_left", "steer_right")
 
 func _physics_process(delta: float) -> void:
-	apply_throttle(delta)
-	apply_rotation(delta)
-	position += transform.x * _velocity * delta
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 
-func get_steer_factor() -> float:
-	return clampf(
-		1.0 - pow(_velocity / max_speed, 2.0),
-		min_steer_factor,
-		1.0
-	) * steer_strength
+	# Handle jump.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 
-func apply_throttle(delta: float) -> void:
-	if _throttle > 0.0:
-		_velocity += acceleration * delta
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis("ui_left", "ui_right")
+	if direction:
+		velocity.x = direction * SPEED
 	else:
-		_velocity -= friction * delta
-	
-	_velocity = clampf(_velocity, 0.0, max_speed)
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-func apply_rotation(delta: float) -> void:
-	rotate(steer_strength * delta * _steer)
+	move_and_slide()
