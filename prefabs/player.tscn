@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcqxgdqfijssu"]
+[gd_scene load_steps=12 format=3 uid="uid://bcqxgdqfijssu"]
 
 [ext_resource type="Script" uid="uid://bv476owki7p1u" path="res://prefabs/player.gd" id="1_4dohe"]
 [ext_resource type="Texture2D" uid="uid://djrdhg7wq24vs" path="res://assets/idle-fernando.png" id="1_72ieh"]
+[ext_resource type="Texture2D" uid="uid://cyg28prom7pjp" path="res://assets/walk-fernando.png" id="3_r66lb"]
+[ext_resource type="AudioStream" uid="uid://dhpgrmd2n1a3o" path="res://assets/sounds/sprint.mp3" id="4_1txc5"]
+[ext_resource type="Texture2D" uid="uid://bybqmduvpo56e" path="res://assets/voiceline_gp2.png" id="5_ht1c8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dohe"]
 atlas = ExtResource("1_72ieh")
@@ -9,6 +12,14 @@ region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r66lb"]
 atlas = ExtResource("1_72ieh")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1txc5"]
+atlas = ExtResource("3_r66lb")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht1c8"]
+atlas = ExtResource("3_r66lb")
 region = Rect2(16, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1txc5"]
@@ -23,6 +34,17 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1txc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht1c8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ht1c8"]
@@ -33,9 +55,17 @@ script = ExtResource("1_4dohe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1txc5")
-animation = &"idle"
-frame_progress = 0.2217
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_ht1c8")
+
+[node name="GP2 Engine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1txc5")
+
+[node name="GP2 Engine_Visual" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-6.9, -17.7)
+scale = Vector2(0.378125, 0.39375)
+texture = ExtResource("5_ht1c8")
