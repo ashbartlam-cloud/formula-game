@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Platformer Game Assessment"
-run/main_scene="uid://b80uswe3l2dyn"
+run/main_scene="uid://icdalemxnpvt"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

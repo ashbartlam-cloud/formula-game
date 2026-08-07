@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3giphucisgnt"]
+
+[ext_resource type="Texture2D" uid="uid://dy122xlulvvg8" path="res://icon.svg" id="1_vkv7r"]
+[ext_resource type="Script" uid="uid://c6yqcjyxkevf5" path="res://prefabs/move_component.gd" id="2_7mnxm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1agw"]
+size = Vector2(128, 128)
+
+[node name="Moveable_Box" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("1_vkv7r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.085, 0.085)
+shape = SubResource("RectangleShape2D_g1agw")
+
+[node name="Move_Component" type="Node" parent="."]
+script = ExtResource("2_7mnxm")
+
+[node name="LeftCollisionRay" type="RayCast2D" parent="."]
+target_position = Vector2(7, 0)
+collision_mask = 2
+
+[node name="RightCollisionRay" type="RayCast2D" parent="."]
+target_position = Vector2(-7, 0)
+collision_mask = 2

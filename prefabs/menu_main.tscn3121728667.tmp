@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://icdalemxnpvt"]
+
+[ext_resource type="Script" uid="uid://dassajp4khmvx" path="res://menu_main.gd" id="1_h37s6"]
+[ext_resource type="Texture2D" uid="uid://djrdhg7wq24vs" path="res://assets/idle-fernando.png" id="2_saqbh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdiac"]
+atlas = ExtResource("2_saqbh")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blh4m"]
+atlas = ExtResource("2_saqbh")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckmp5"]
+atlas = ExtResource("2_saqbh")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apmc8"]
+atlas = ExtResource("2_saqbh")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n10wp"]
+atlas = ExtResource("2_saqbh")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qxrq"]
+atlas = ExtResource("2_saqbh")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5n5i"]
+atlas = ExtResource("2_saqbh")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eml4q"]
+atlas = ExtResource("2_saqbh")
+region = Rect2(48, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mp706"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdiac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blh4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckmp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_apmc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n10wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qxrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5n5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eml4q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="MenuMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h37s6")
+
+[node name="Play_Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -21.5
+offset_right = 79.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(211, 351)
+scale = Vector2(23.055, 23.055)
+sprite_frames = SubResource("SpriteFrames_mp706")
+frame_progress = 0.297064
+
+[connection signal="pressed" from="Play_Button" to="." method="_on_play_button_pressed"]
